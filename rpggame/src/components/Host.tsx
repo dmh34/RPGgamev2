@@ -1,11 +1,11 @@
 import React from 'react';
 import * as BABYLON from '@babylonjs/core';
-import * as GUI from '@babylonjs/gui';
+//import * as GUI from '@babylonjs/gui';
 import { Engine, Scene } from '@babylonjs/core';
 import '../components/Host.css';
-import pic from '../warrior.png';
-import pic2 from '../../public/wizard.png'
-
+import pic from '../assets/sprites/warrior.png';
+import pic2 from '../assets/sprites/rogue.png';
+import pic3 from '../assets/sprites/cleric.png';
 
 
 
@@ -34,15 +34,24 @@ export default class Host extends React.Component<{},{}>{
         camera.attachControl(this._canvasRef,true);
 
         let sprite = new BABYLON.SpriteManager("playerSprite", pic,1,{width:32, height: 32}, this._scene);
+        let sprite2 = new BABYLON.SpriteManager("rouge",pic2,1,{width:32, height: 32}, this._scene )
+        let sprite3 = new BABYLON.SpriteManager("cleric",pic3,1,{width:32, height: 32}, this._scene )
         
         let p =  new BABYLON.Sprite("player", sprite);
+        let p2 = new BABYLON.Sprite("rougesprite", sprite2);
+        let p3 = new BABYLON.Sprite("rouges", sprite3);
         p.playAnimation(21,30,true,120);
-        p.position = new BABYLON.Vector3(1,1,1);
+        p2.playAnimation(21,30,true,120);
+        p3.playAnimation(21,30,true,120);
+
+        p.position = new BABYLON.Vector3(1.5,1.5,0);
+        p2.position = new BABYLON.Vector3(1,1,0);
+        p3.position = new BABYLON.Vector3(0.5,0.5,0);
        
         var particleSystem = new BABYLON.GPUParticleSystem("particles", { capacity:1000000, randomTextureSize: 4096 }, this._scene);
         particleSystem.start();
         
-        this._engine.runRenderLoop(()=>{
+        this._engine.runRenderLoop(()=>{ 
             console.log("Render Loop");
             this._scene.render();
         })
@@ -62,12 +71,5 @@ export default class Host extends React.Component<{},{}>{
             </div>
         )
     }
-    
-    onCanvasLoad(){
-      
-       
 
-       
-
-    }
 }
