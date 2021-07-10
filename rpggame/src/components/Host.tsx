@@ -34,8 +34,8 @@ export default class Host extends React.Component<{},{}>{
         camera.attachControl(this._canvasRef,true);
 
         let sprite = new BABYLON.SpriteManager("playerSprite", pic,1,{width:32, height: 32}, this._scene);
-        let sprite2 = new BABYLON.SpriteManager("rouge",pic2,1,{width:32, height: 32}, this._scene )
-        let sprite3 = new BABYLON.SpriteManager("cleric",pic3,1,{width:32, height: 32}, this._scene )
+        let sprite2 = new BABYLON.SpriteManager("rouge",pic2,1,{width:32, height: 32}, this._scene );
+        let sprite3 = new BABYLON.SpriteManager("cleric",pic3,1,{width:32, height: 32}, this._scene );
         
         let p =  new BABYLON.Sprite("player", sprite);
         let p2 = new BABYLON.Sprite("rougesprite", sprite2);
