@@ -1,0 +1,5 @@
+--Overview--
+Two teams with at most five units battle against each other to defeat the other team. There aren't any levels for character growth, however the players are given a poll of status points to distribute to all the units entering the battle. The number of points doesn't not increase while the player progresses through the game. They will have to rely on strategy, proper point distribution and gearing their units appropriately.
+
+--Battle--
+Battles will take places on 10x10, 12x12, or 16x16 grids which will be randomly generated. Each grid spot will have a different surface that will affect a unit’s battle abilities. The battles will be turned based with the order determined by the abilities used and the speed of the unit. Battles in when all enemy units have been defeated.
