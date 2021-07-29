@@ -9,7 +9,7 @@ import skybox3 from '../assets/elyvisions/arch3_ft.png';
 import skybox4 from '../assets/elyvisions/arch3_lf.png';
 import skybox5 from '../assets/elyvisions/arch3_rt.png';
 import skybox6 from '../assets/elyvisions/arch3_up.png';
-import SimplexNoise from 'simplex-noise';
+
 import { Enviroment } from './enviroment';
 
 export class Driver {
@@ -25,8 +25,11 @@ export class Driver {
     }
 
     show() {
-        var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, BABYLON.Vector3.Zero(), this._scene);
-        var light = new BABYLON.HemisphericLight("Light1", new BABYLON.Vector3(1, 1, 0), this._scene);
+        //move to enviro
+        var camera =
+         new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, BABYLON.Vector3.Zero(), this._scene);
+        
+         var light = new BABYLON.HemisphericLight("Light1", new BABYLON.Vector3(1, 1, 0), this._scene);
 
         var skybox = BABYLON.MeshBuilder.CreateBox('skybox', { size: 50}, this._scene);
         var skyboxmat = new BABYLON.StandardMaterial('skybox', this._scene);
@@ -83,6 +86,3 @@ export class Driver {
     }
 }
 
-export const imgdir = {
-    skyBoxTextureDir: "rpggame/src/assets/elyvisions/cav3"
-}

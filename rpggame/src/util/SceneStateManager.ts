@@ -11,7 +11,7 @@ export class SceneStateManager {
 
     /**
      *
-     * @param scen
+     * @param scene
      */
     constructor(scene: Scene) {
         this._currentScene = scene;

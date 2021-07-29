@@ -20,23 +20,23 @@ import { Driver } from '../util/basescene';
 export default class Host extends React.Component<{}, {}>{
 
     private _canvasRef: any;
-    private _scene:any;
-    private _engine:any;
+    private _scene: any;
+    private _engine: any;
 
     constructor(props: any) {
         super(props);
         this._canvasRef = React.createRef();
-        
+
 
 
     }
 
     async componentDidMount() {
         console.log("loading 3d stuffs");
-        
+
         let d: Driver = new Driver(this._canvasRef);
         d.show();
-        
+
 
 
 
@@ -48,8 +48,6 @@ export default class Host extends React.Component<{}, {}>{
         return (
             <div>
                 <canvas id="game-host" ref={canvasRef => { this._canvasRef = canvasRef }} >
-
-
                 </canvas>
 
 
