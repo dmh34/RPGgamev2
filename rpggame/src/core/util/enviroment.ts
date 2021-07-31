@@ -8,6 +8,7 @@ import mudTexture from '../../assets/terrain/ground_mud_d.jpg';
 import snowTexture from '../../assets/terrain/snow2_d.jpg';
 import snowTextureNormal from '../../assets/terrain/snow2_n.jpg';
 import mudTextureNormal from '../../assets/terrain/ground_mud_n.jpg';
+import waterTexture from '../../assets/terrain/brushwalker218.png';
 import { IEnviroment } from './IEnviroment';
 
 //skybox
@@ -25,7 +26,7 @@ import { SlotType } from '../constants';
  */
 export class Enviroment implements IEnviroment {
     private _scene: BABYLON.Scene;
-
+   
     private _height: number;
     private _width: number;
 
@@ -44,6 +45,7 @@ export class Enviroment implements IEnviroment {
         this._maxRadius = maxCameraRadius ?? 40;
         this._minRadius = minCameraRadius ?? 10;
         this._enviormentGrid = new Grid(this._height, this._width);
+        
 
     }
 
@@ -75,21 +77,14 @@ export class Enviroment implements IEnviroment {
             mat.diffuseTexture = new BABYLON.Texture(mudTexture, this._scene);
             mat.bumpTexture = new BABYLON.Texture(mudTextureNormal, this._scene);
         } else if (this._enviormentGrid.getType(x, y) === SlotType.WATER) {
-            mat.diffuseTexture = new BABYLON.Texture(snowTexture, this._scene);
-            mat.bumpTexture = new BABYLON.Texture(snowTextureNormal, this._scene);
+            mat.diffuseTexture = new BABYLON.Texture(waterTexture, this._scene);
+            //mat.bumpTexture = new BABYLON.Texture(snowTextureNormal, this._scene);
         }
 
         mesh.material = mat;
     }
 
-    public init() {
-        this._enviormentGrid.init();
-        this._init();
-        var camera =
-            new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, BABYLON.Vector3.Zero(), this._scene);
-
-        var light = new BABYLON.HemisphericLight("Light1", new BABYLON.Vector3(1, 1, 0), this._scene);
-
+    private _makeSkyBox(scene: BABYLON.Scene):void{
         var skybox = BABYLON.MeshBuilder.CreateBox('skybox', { size: 100 }, this._scene);
         var skyboxmat = new BABYLON.StandardMaterial('skybox', this._scene);
         skyboxmat.backFaceCulling = false;
@@ -97,6 +92,26 @@ export class Enviroment implements IEnviroment {
         skyboxmat.diffuseColor = new BABYLON.Color3(0, 0, 0);
         skyboxmat.specularColor = new BABYLON.Color3(0, 0, 0);
         skybox.material = skyboxmat;
+        console.log(skybox);
+    
+    }
+
+    public init() {
+       
+        this._enviormentGrid.init();
+        this._init();
+        var camera =
+            new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, BABYLON.Vector3.Zero(), this._scene);
+        console.log("making skybox");
+        const light = new BABYLON.HemisphericLight("Light1", new BABYLON.Vector3(1, 1, 0), this._scene);
+        this._makeSkyBox(this._scene);
+        // var skybox = BABYLON.MeshBuilder.CreateBox('skybox', { size: 100 }, this._scene);
+        // var skyboxmat = new BABYLON.StandardMaterial('skybox', this._scene);
+        // skyboxmat.backFaceCulling = false;
+        // skyboxmat.reflectionTexture = new BABYLON.CubeTexture('', this._scene, ['_bk.png', '_dn.png', '_ft.png', '_lf.png', '_rt.png', '_up.png'], false, [skybox1, skybox2, skybox3, skybox4, skybox5, skybox6]);
+        // skyboxmat.diffuseColor = new BABYLON.Color3(0, 0, 0);
+        // skyboxmat.specularColor = new BABYLON.Color3(0, 0, 0);
+        // skybox.material = skyboxmat;
         camera.upperBetaLimit = Math.PI / 2.2;
         camera.lowerBetaLimit = 0;
         camera.lowerRadiusLimit = 10;

@@ -31,7 +31,7 @@ export default class Grid implements IGrid{
     }
     isOccupied(row: number, col: number): boolean {
         
-        return ((this._grid[row][col]&GridBitMasks.OCCUPIED) == 1)? true: false;
+        return ((this._grid[row][col]&GridBitMasks.OCCUPIED) === 1)? true: false;
     }
     init(): void {
         
@@ -51,10 +51,10 @@ export default class Grid implements IGrid{
         if(generatedNumber < 0.2){
             spotType = SlotType.GRASS;
         }else if (generatedNumber < 0.3){
-            spotType = SlotType.GRAVEL;
+            spotType = SlotType.SNOW;
         }else if (generatedNumber < 0.4){
             spotType = SlotType.MUD;
-        }else if(generatedNumber < 0.5){
+        }else if(generatedNumber < 1.0){
             spotType = SlotType.WATER;
         }
 

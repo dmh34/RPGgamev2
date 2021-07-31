@@ -8,6 +8,7 @@ import { Enviroment} from './enviroment';
 import { IEnviroment } from './IEnviroment';
 import { GridSize } from '../constants';
 
+
 export class Driver {
     private _scene: Scene;
     private _engine: Engine;
@@ -26,6 +27,8 @@ export class Driver {
        
         let enviro: IEnviroment = new Enviroment(this._scene,this._cancas,GridSize.LARGE );
         enviro.init();
+
+       
         
       
 
@@ -38,6 +41,7 @@ export class Driver {
         
         let p = new BABYLON.Sprite("player", sprite);
         p.isPickable = true;
+        
         
         let p2 = new BABYLON.Sprite("rougesprite", sprite2);
         let p3 = new BABYLON.Sprite("rouges", sprite3);
