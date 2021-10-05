@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/RPGgamev2/static/css/main.562b8703.chunk.css",
-    "main.js": "/RPGgamev2/static/js/main.2db7e546.chunk.js",
-    "main.js.map": "/RPGgamev2/static/js/main.2db7e546.chunk.js.map",
+    "main.js": "/RPGgamev2/static/js/main.a42a5ec8.chunk.js",
+    "main.js.map": "/RPGgamev2/static/js/main.a42a5ec8.chunk.js.map",
     "runtime-main.js": "/RPGgamev2/static/js/runtime-main.ab5a8a0e.js",
     "runtime-main.js.map": "/RPGgamev2/static/js/runtime-main.ab5a8a0e.js.map",
-    "static/js/2.b142cf38.chunk.js": "/RPGgamev2/static/js/2.b142cf38.chunk.js",
-    "static/js/2.b142cf38.chunk.js.map": "/RPGgamev2/static/js/2.b142cf38.chunk.js.map",
+    "static/js/2.c39dcd1d.chunk.js": "/RPGgamev2/static/js/2.c39dcd1d.chunk.js",
+    "static/js/2.c39dcd1d.chunk.js.map": "/RPGgamev2/static/js/2.c39dcd1d.chunk.js.map",
     "static/js/3.4b738ea9.chunk.js": "/RPGgamev2/static/js/3.4b738ea9.chunk.js",
     "static/js/3.4b738ea9.chunk.js.map": "/RPGgamev2/static/js/3.4b738ea9.chunk.js.map",
     "index.html": "/RPGgamev2/index.html",
     "static/css/main.562b8703.chunk.css.map": "/RPGgamev2/static/css/main.562b8703.chunk.css.map",
-    "static/js/2.b142cf38.chunk.js.LICENSE.txt": "/RPGgamev2/static/js/2.b142cf38.chunk.js.LICENSE.txt",
+    "static/js/2.c39dcd1d.chunk.js.LICENSE.txt": "/RPGgamev2/static/js/2.c39dcd1d.chunk.js.LICENSE.txt",
     "static/media/arch3_bk.8f8ab086.png": "/RPGgamev2/static/media/arch3_bk.8f8ab086.png",
     "static/media/arch3_dn.f8f7fec7.png": "/RPGgamev2/static/media/arch3_dn.f8f7fec7.png",
     "static/media/arch3_ft.05141b55.png": "/RPGgamev2/static/media/arch3_ft.05141b55.png",
@@ -19,10 +19,8 @@
     "static/media/arch3_rt.c83185a2.png": "/RPGgamev2/static/media/arch3_rt.c83185a2.png",
     "static/media/arch3_up.cf10ede6.png": "/RPGgamev2/static/media/arch3_up.cf10ede6.png",
     "static/media/brushwalker218.86327b2f.png": "/RPGgamev2/static/media/brushwalker218.86327b2f.png",
-    "static/media/cleric.f639598e.png": "/RPGgamev2/static/media/cleric.f639598e.png",
     "static/media/ground_mud_d.c541fd50.jpg": "/RPGgamev2/static/media/ground_mud_d.c541fd50.jpg",
     "static/media/ground_mud_n.27ffb444.jpg": "/RPGgamev2/static/media/ground_mud_n.27ffb444.jpg",
-    "static/media/rogue.bfde2bce.png": "/RPGgamev2/static/media/rogue.bfde2bce.png",
     "static/media/savanna_dry_d.9bef9f29.jpg": "/RPGgamev2/static/media/savanna_dry_d.9bef9f29.jpg",
     "static/media/savanna_dry_n.7b994994.jpg": "/RPGgamev2/static/media/savanna_dry_n.7b994994.jpg",
     "static/media/snow2_d.3ca6e495.jpg": "/RPGgamev2/static/media/snow2_d.3ca6e495.jpg",
@@ -31,8 +29,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.ab5a8a0e.js",
-    "static/js/2.b142cf38.chunk.js",
+    "static/js/2.c39dcd1d.chunk.js",
     "static/css/main.562b8703.chunk.css",
-    "static/js/main.2db7e546.chunk.js"
+    "static/js/main.a42a5ec8.chunk.js"
   ]
 }
