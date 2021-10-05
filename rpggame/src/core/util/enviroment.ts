@@ -19,7 +19,7 @@ import skybox4 from '../../assets/elyvisions/arch3_lf.png';
 import skybox5 from '../../assets/elyvisions/arch3_rt.png';
 import skybox6 from '../../assets/elyvisions/arch3_up.png';
 import { SlotType } from '../constants';
-import { MoveValidator } from './IMoveValidator';
+import { MoveValidator } from "./MoveValidator";
 
 
 /**
@@ -93,7 +93,7 @@ export class Enviroment implements IEnviroment {
         skyboxmat.diffuseColor = new BABYLON.Color3(0, 0, 0);
         skyboxmat.specularColor = new BABYLON.Color3(0, 0, 0);
         skybox.material = skyboxmat;
-        console.log(skybox);
+        
 
     }
 

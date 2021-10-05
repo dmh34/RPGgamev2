@@ -24,8 +24,9 @@ export default class Grid implements IGrid {
         this._moveValidator = validator;
         this._actors = actors?? [];
     }
-    updateGrid(): void {
-        throw new Error("Method not implemented.");
+
+    updateGrid(actor: IActor, ): void {
+        
     }
 
     private _generate(nx: number, ny: number) {

@@ -18,25 +18,40 @@ export class Driver {
     private _scene: Scene;
     private _engine: Engine;
     private _cancas: any;
-    
+    private _lastpicked: any;
+    private _moves: BABYLON.Mesh[][];
+
 
     constructor(canvas: any) {
         this._cancas = canvas;
         this._engine = new Engine(canvas);
         this._scene = new Scene(this._engine);
-        
+        this._moves = [];
+
         this._scene.onPointerObservable.add((info: PointerInfo) => {
-            if (info.type === BABYLON.PointerEventTypes.POINTERPICK)
-                console.log("picked")
+          
             if (info.type === BABYLON.PointerEventTypes.POINTERDOWN) {
-                
+                let otherPicked = this._scene.pick(this._scene.pointerX, this._scene.pointerY);
+
+                if (otherPicked?.pickedMesh?.name === 'mesh') {
+                    
+                    console.log(otherPicked?.pickedMesh.position);
+                    this._lastpicked.pickedSprite.position.set(otherPicked.pickedMesh.position.x, otherPicked.pickedMesh.position.y, otherPicked.pickedMesh.position.z);
+                    for(let i = 0; i < 5; i++){
+                        for (let j = 0; j < 5; j++){
+                            this._moves[i][j].dispose(true);
+                        }
+                    }
+                    return;
+                }
                 let picked = this._scene.pickSprite(this._scene.pointerX, this._scene.pointerY);
                 if (picked != null && picked.hit) {
                     if (picked.pickedSprite != null) {
-                        console.log("sprite picked")
-                        
-                        //picked.pickedSprite.position.x += 1;
+                     
+                        this._lastpicked = picked;
                         this.displayValidMoves(picked);
+
+
                     }
                 }
             }
@@ -46,18 +61,26 @@ export class Driver {
 
     private displayValidMoves(pickedSprite: PickingInfo): void {
         if (pickedSprite.pickedSprite != null) {
-            let mesh = BABYLON.MeshBuilder.CreateBox("mesh", { size: 1 }, this._scene);
-            mesh.position = new Vector3(pickedSprite.pickedSprite.position.x + 1, 1, 0);
-            mesh.isPickable =true;
-            let mat = new BABYLON.StandardMaterial("mats", this._scene);
-            mat.alpha = 0.5;
-            mat.diffuseColor = new BABYLON.Color3(0,0,255);
-            
-            mesh.material = mat;
+
+
+            for (let i = 0; i < 5; i++) {
+                this._moves[i] = [];
+                for (let j = 0; j < 5; j++) {
+                    let mesh = BABYLON.MeshBuilder.CreateBox("mesh", { size: 1 }, this._scene);
+                    mesh.position = new Vector3(-1 * (Math.floor((5 / 2)) - pickedSprite.pickedSprite.position.x) + i, 1, -1 * (Math.floor((5 / 2)) - pickedSprite.pickedSprite.position.z)+j);
+                    mesh.isPickable = true;
+                    let mat = new BABYLON.StandardMaterial("mats", this._scene);
+                    mat.alpha = 0.5;
+                    mat.diffuseColor = new BABYLON.Color3(0, 0, 255);
+
+                    mesh.material = mat;
+                    this._moves[i][j] = mesh;
+                }
+            }
             /*
              get valid moves 
             */
-            
+
         }
     }
 
@@ -80,11 +103,11 @@ export class Driver {
 
 
         let sprite = new BABYLON.SpriteManager("playerSprite", pic, 1, { width: 32, height: 32 }, this._scene);
-        let sprite2 = new BABYLON.SpriteManager("rouge", pic2, 1, { width: 32, height: 32 }, this._scene);
-        let sprite3 = new BABYLON.SpriteManager("cleric", pic3, 1, { width: 32, height: 32 }, this._scene);
+        // let sprite2 = new BABYLON.SpriteManager("rouge", pic2, 1, { width: 32, height: 32 }, this._scene);
+        // let sprite3 = new BABYLON.SpriteManager("cleric", pic3, 1, { width: 32, height: 32 }, this._scene);
         sprite.isPickable = true;
-        sprite2.isPickable = true;
-        sprite3.isPickable = true;
+        // sprite2.isPickable = true;
+        // sprite3.isPickable = true;
 
 
         let p = new BABYLON.Sprite("player", sprite);
@@ -92,18 +115,18 @@ export class Driver {
 
 
 
-        let p2 = new BABYLON.Sprite("rougesprite", sprite2);
-        let p3 = new BABYLON.Sprite("rouges", sprite3);
-        p2.isPickable = true;
-        p3.isPickable = true;
+        // let p2 = new BABYLON.Sprite("rougesprite", sprite2);
+        // let p3 = new BABYLON.Sprite("rouges", sprite3);
+        // p2.isPickable = true;
+        // p3.isPickable = true;
 
         p.playAnimation(21, 30, true, 120);
-        p2.playAnimation(21, 30, true, 120);
-        p3.playAnimation(21, 30, true, 120);
+        // p2.playAnimation(21, 30, true, 120);
+        // p3.playAnimation(21, 30, true, 120);
 
         p.position = new BABYLON.Vector3(2, 1, 0);
-        p2.position = new BABYLON.Vector3(1, 1, 0);
-        p3.position = new BABYLON.Vector3(3, 1, 0);
+        // p2.position = new BABYLON.Vector3(1, 1, 0);
+        // p3.position = new BABYLON.Vector3(3, 1, 0);
 
 
 

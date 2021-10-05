@@ -3,7 +3,7 @@ import {expect}  from "chai";
 
 import Grid from "../../core/util/Grid";
 import {GridSize, SlotType} from "../../core/constants"
-import { MoveValidator } from "../../core/util/IMoveValidator";
+import { MoveValidator } from "../../core/util/MoveValidator";
 
 describe("Grid Test",()=>{
 

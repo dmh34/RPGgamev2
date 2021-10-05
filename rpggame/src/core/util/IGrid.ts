@@ -1,3 +1,5 @@
+import IActor from "./IActor";
+
 //import {GameEntity} from 'yuka';
 export interface IGrid {
     /**
@@ -32,7 +34,7 @@ export interface IGrid {
      */
     isOccupied(row:number, col:number):boolean;
 
-    updateGrid():void
+    updateGrid(actor: IActor):void
 
 
 
