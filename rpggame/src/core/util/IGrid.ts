@@ -1,4 +1,7 @@
+import IActor from "./IActor";
+import { IGenerator } from "./IGenerator";
 
+//import {GameEntity} from 'yuka';
 export interface IGrid {
     /**
      * Checks if the current grid slot is occupied.
@@ -13,6 +16,7 @@ export interface IGrid {
      * Initializes the grid
      */
     init(): void;
+
     /**
      * returns the entire grid
      */
@@ -30,6 +34,8 @@ export interface IGrid {
      * @param col 
      */
     isOccupied(row:number, col:number):boolean;
+
+    updateGrid(actor: IActor, size: number):void
 
 
 
