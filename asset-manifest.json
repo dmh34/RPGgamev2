@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/RPGgamev2/static/css/main.562b8703.chunk.css",
-    "main.js": "/RPGgamev2/static/js/main.a42a5ec8.chunk.js",
-    "main.js.map": "/RPGgamev2/static/js/main.a42a5ec8.chunk.js.map",
+    "main.js": "/RPGgamev2/static/js/main.bf9c25f6.chunk.js",
+    "main.js.map": "/RPGgamev2/static/js/main.bf9c25f6.chunk.js.map",
     "runtime-main.js": "/RPGgamev2/static/js/runtime-main.ab5a8a0e.js",
     "runtime-main.js.map": "/RPGgamev2/static/js/runtime-main.ab5a8a0e.js.map",
     "static/js/2.c39dcd1d.chunk.js": "/RPGgamev2/static/js/2.c39dcd1d.chunk.js",
@@ -31,6 +31,6 @@
     "static/js/runtime-main.ab5a8a0e.js",
     "static/js/2.c39dcd1d.chunk.js",
     "static/css/main.562b8703.chunk.css",
-    "static/js/main.a42a5ec8.chunk.js"
+    "static/js/main.bf9c25f6.chunk.js"
   ]
 }
