@@ -9,7 +9,7 @@ describe("Grid Test",()=>{
 
     it('Grid should initialize',()=>{
         const testGrid = new Grid(GridSize.LARGE, new MoveValidator());
-        expect(testGrid).to.not.be.undefined;
+        //expect(testGrid).to.not.be.undefined();
         testGrid.init();
         expect(testGrid.getGrid()).to.be.an('Array');
 

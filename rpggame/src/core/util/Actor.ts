@@ -1,95 +1,64 @@
-import { Vector3 } from '@babylonjs/core';
+import {  Vector3, Sprite, SpriteManager,Scene } from '@babylonjs/core';
 import IActor from '../util/IActor';
+import { Coordinate } from './Coordinate';
+import { IActorAttributes } from './IActorAttributes';
 
 export default class Actor implements IActor{
     //#region fields
-    private _agility : number;
-    private _defense : number;
-    private _vitality : number;
-    private _strength : number;
-    private _dexterty : number;
-    private _charisma : number;
-    private _mana : number;
-    private _speed: number;
+ 
     private _currentSprite: string;
     private _position: Vector3;
-    private _isAlive: boolean;
+    private _sprite: Sprite;
+    private _spriteManager: SpriteManager;
+    private _scene: Scene;
+    private _actorAttributes: IActorAttributes;
 
 
    
     
     
     //#endregion
-    constructor(){
-        this._agility = 0
-        this._charisma = 0;
-        this._defense = 0;
-        this._dexterty =0;
-        this._vitality =0;
-        this._mana =0;
-        this._strength = 0;
-        this._speed = 0;
-        this._isAlive = false;
-        this._position = new Vector3();
-        this._currentSprite = "";
+    constructor(actorAttributes: IActorAttributes, positon: Coordinate, currentSprite: string, scene:Scene ,pickable?:boolean, animated?: boolean){
+        this._scene = scene;
+        this._actorAttributes = actorAttributes;
+        this._position = new Vector3(positon.x, positon.y, positon.z);
+        this._currentSprite = currentSprite;
+        this._spriteManager = new SpriteManager("sprite1", this._currentSprite, 1,{ width: 32, height: 32 }, this._scene);
+        this._sprite = new Sprite("sprite", this._spriteManager);
+        this._sprite.position = this._position;
+        
+        if(animated){
+            this._sprite.playAnimation(21,30,true, 120);
+            this._sprite.isVisible = true;
+            
+        }
+
+        if(pickable){
+            this._sprite.isPickable = pickable;
+            this._spriteManager.isPickable = pickable;
+        }
+        console.log(this._position);
     }
-    move(): void {
-        throw new Error('Method not implemented.');
+    getPosition(): Vector3 {
+        return  this._position;
+    }
+    move(newPosition: Vector3): void {
+        this._position = newPosition;
+        console.log(this._position);
     }
     //#region props
-    public get strength() : number 
-    {
-        return this._strength;
-    }
-    public set strength(v : number)
-    {
-        this._strength = v;
-    }
-    
-    public get Vitality() : number {
-        return this._vitality;
-    }
-    public set Vitality(v : number) {
-        this._vitality = v;
-    }
-    public get mana() : number {
-        return this._mana;
-    }
-    
-    public set mana(v : number) {
-        this._mana = v;
-    }
-    
-    public get defense() : number {
-        return this._defense;
-    }
-    public set defense(v : number) {
-        this._defense = v;
-    }
-    
-    public get_agility() : number {
-        return this._agility;
-    }
-    public set_agility(v : number) {
-        this._agility = v;
-    }
+   
+  
+   public get actorAttributes() : IActorAttributes {
+       return this._actorAttributes;
+   }
+   public set actorAttributes(v : IActorAttributes) {
+       this._actorAttributes = v;
+   }
 
-    public get dexterty() : number {
-        return this._dexterty;
-    }
-    public set dexterty(v : number)
-    {
-        this._dexterty = v;
-    }
-
-    public get charisma() : number {
-        return this._charisma;
-    }
-    public set charisma(v : number) {
-        this._charisma = v;
-    }
-    
+  
     //#endregion
 
 
 }
+

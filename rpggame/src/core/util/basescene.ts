@@ -1,4 +1,4 @@
-import { BabylonFileLoaderConfiguration, Engine, PickingInfo, PointerInfo, Scene, Vector3 } from '@babylonjs/core';
+import { Engine, PickingInfo, PointerInfo, Scene, Vector3 } from '@babylonjs/core';
 import * as GUI from 'babylonjs-gui';
 import * as BABYLON from '@babylonjs/core';
 import pic from '../../assets/sprites/warrior.png';
@@ -8,7 +8,9 @@ import pic3 from '../../assets/sprites/cleric.png';
 import { Enviroment } from './enviroment';
 import { IEnviroment } from './IEnviroment';
 import { GridSize } from '../constants';
-import { XmlLoader } from 'babylonjs-gui/2D/xmlLoader';
+import IActor from './IActor';
+import Actor from './Actor';
+
 
 
 
@@ -17,17 +19,18 @@ import { XmlLoader } from 'babylonjs-gui/2D/xmlLoader';
 export class Driver {
     private _scene: Scene;
     private _engine: Engine;
-    private _cancas: any;
+    private _canvas: any;
     private _lastpicked: any;
     private _moves: BABYLON.Mesh[][];
+    //private actor: IActor;
 
 
     constructor(canvas: any) {
-        this._cancas = canvas;
+        this._canvas = canvas;
         this._engine = new Engine(canvas);
         this._scene = new Scene(this._engine);
         this._moves = [];
-
+        //this.actor = new Actor({agility: 3, defense: 3, vitiality: 3, strength: 3, dexterity: 3, charisma: 3, mana: 3, speed: 3, isAlive: true}, new Vector3(2,2,1), pic,this._scene, true, true);
         this._scene.onPointerObservable.add((info: PointerInfo) => {
           
             if (info.type === BABYLON.PointerEventTypes.POINTERDOWN) {
@@ -39,9 +42,10 @@ export class Driver {
                     this._lastpicked.pickedSprite.position.set(otherPicked.pickedMesh.position.x, otherPicked.pickedMesh.position.y, otherPicked.pickedMesh.position.z);
                     for(let i = 0; i < 5; i++){
                         for (let j = 0; j < 5; j++){
-                            this._moves[i][j].dispose(true);
+                            this._moves[i][j].dispose();
                         }
                     }
+                    console.log("removing move meshes");
                     return;
                 }
                 let picked = this._scene.pickSprite(this._scene.pointerX, this._scene.pointerY);
@@ -88,7 +92,7 @@ export class Driver {
 
 
 
-        let enviro: IEnviroment = new Enviroment(this._scene, this._cancas, GridSize.LARGE);
+        let enviro: IEnviroment = new Enviroment(this._scene, this._canvas, GridSize.LARGE);
         enviro.init();
         let testGUI = GUI.AdvancedDynamicTexture.CreateFullscreenUI("myUI", true, this._scene);
         // let button =  GUI.Button.CreateSimpleButton("mybutton", "button");
@@ -98,43 +102,20 @@ export class Driver {
         // button.background = "blue";
         // button.topInPixels = -200;
         // testGUI.addControl(button);
+        let actor: IActor = new Actor({agility: 3, defense: 3, vitiality: 3, strength: 3, dexterity: 3, charisma: 3, mana: 3, speed: 3, isAlive: true}, {x:3, y: 1, z: 0}, pic,this._scene, true, true);
+        let actor2: IActor = new Actor({agility: 3, defense: 3, vitiality: 3, strength: 3, dexterity: 3, charisma: 3, mana: 3, speed: 3, isAlive: true}, {x:4, y: 1, z: 0}, pic,this._scene, true, true);
+        
 
 
+     
 
 
-        let sprite = new BABYLON.SpriteManager("playerSprite", pic, 1, { width: 32, height: 32 }, this._scene);
-        // let sprite2 = new BABYLON.SpriteManager("rouge", pic2, 1, { width: 32, height: 32 }, this._scene);
-        // let sprite3 = new BABYLON.SpriteManager("cleric", pic3, 1, { width: 32, height: 32 }, this._scene);
-        sprite.isPickable = true;
-        // sprite2.isPickable = true;
-        // sprite3.isPickable = true;
-
-
-        let p = new BABYLON.Sprite("player", sprite);
-        p.isPickable = true;
-
-
-
-        // let p2 = new BABYLON.Sprite("rougesprite", sprite2);
-        // let p3 = new BABYLON.Sprite("rouges", sprite3);
-        // p2.isPickable = true;
-        // p3.isPickable = true;
-
-        p.playAnimation(21, 30, true, 120);
-        // p2.playAnimation(21, 30, true, 120);
-        // p3.playAnimation(21, 30, true, 120);
-
-        p.position = new BABYLON.Vector3(2, 1, 0);
-        // p2.position = new BABYLON.Vector3(1, 1, 0);
-        // p3.position = new BABYLON.Vector3(3, 1, 0);
-
-
+       
 
         this._engine.runRenderLoop(() => {
             this._scene.render();
 
-
-            // console.log(s);
+            
 
         });
 

@@ -1,5 +1,8 @@
+import { Vector3 } from "@babylonjs/core";
+
 export default interface IActor{
      
-    move():void;
-    
+    move(newPosition: Vector3):void;
+    getPosition(): Vector3;
 }
+

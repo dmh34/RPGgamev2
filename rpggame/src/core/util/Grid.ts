@@ -1,6 +1,6 @@
 import SimplexNoise from "simplex-noise";
 import { IGrid } from "./IGrid";
-import { GridBitMasks, SlotType } from "../constants";
+import { GridBitMasks, GridSize, SlotType } from "../constants";
 import IMoveValidator from "./IMoveValidator";
 import IActor from "./IActor";
 
@@ -24,9 +24,12 @@ export default class Grid implements IGrid {
         this._moveValidator = validator;
         this._actors = actors?? [];
     }
-
-    updateGrid(actor: IActor, ): void {
+   
+    updateGrid(actor: IActor, size: number): void {
+        let x = size/2 - actor.getPosition().x; 
+        let z = size/2 - actor.getPosition().y;
         
+        this._grid[x][z] = this._grid[x][z] | 1;
     }
 
     private _generate(nx: number, ny: number) {

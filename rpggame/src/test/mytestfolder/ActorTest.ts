@@ -6,6 +6,10 @@ describe("Actor Test",()=>{
 
     })
 
+    it('should move', ()=>{
+
+    })
+
     
 
     
