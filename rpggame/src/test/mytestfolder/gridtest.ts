@@ -4,20 +4,26 @@ import {expect}  from "chai";
 import Grid from "../../core/util/Grid";
 import {GridSize, SlotType} from "../../core/constants"
 import { MoveValidator } from "../../core/util/MoveValidator";
+import IActor from "../../core/util/IActor";
+import { Vector3 } from "@babylonjs/core";
+import Actor from "../../core/util/Actor";
 
 describe("Grid Test",()=>{
 
-    it('Grid should initialize',()=>{
-        const testGrid = new Grid(GridSize.LARGE, new MoveValidator());
-        //expect(testGrid).to.not.be.undefined();
+    let testGrid: Grid;
+    before(()=>{
+        testGrid = new Grid(GridSize.LARGE,new MoveValidator());
         testGrid.init();
+    })
+
+    it('Grid should initialize',()=>{
+        
         expect(testGrid.getGrid()).to.be.an('Array');
 
     })
 
     it('Grid spots should have a type',()=>{
-        const testGrid = new Grid(GridSize.LARGE,new MoveValidator());
-        testGrid.init();
+       
         let sType= 0;
         for(let i =0 ; i < GridSize.LARGE; i++){
             for(let j = 0; j < GridSize.LARGE; j++){
@@ -38,3 +44,15 @@ describe("Grid Test",()=>{
         
     })
 })
+
+class ActorStub implements IActor{
+    
+    constructor(private pos:Vector3){}
+    move(newPosition: Vector3): void {
+    
+    }
+    getPosition(): Vector3 {
+       return this.pos;
+    }
+
+}
