@@ -10,6 +10,8 @@ import { GridSize } from '../constants';
 import IActor from './IActor';
 import Actor from './Actor';
 import { extractHighlightsPixelShader } from '@babylonjs/core/Shaders/extractHighlights.fragment';
+import { UIButton, UIElement } from '../ui/UIButton';
+import assets from '../../assets';
 
 
 
@@ -45,6 +47,7 @@ export class Driver {
                         meshPicked.pickedMesh.position.y, meshPicked.pickedMesh.position.z);
                     //update grid check to see if the slot is taken. if taken start battle.
                     //otherwise move to the location.
+                    //this._enviroment?.update();
                     this.removeMoveMakers();
                     return;
                 }
@@ -104,17 +107,30 @@ export class Driver {
     show() {
 
 
+        let buttonUI: UIButton = new UIButton(0.15, 0.15);
 
         this._enviroment= new Enviroment(this._scene, this._canvas, GridSize.LARGE);
         this._enviroment.init();
         let testGUI = GUI.AdvancedDynamicTexture.CreateFullscreenUI("myUI", true, this._scene);
-        // let button =  GUI.Button.CreateSimpleButton("mybutton", "button");
-        // button.width = 0.15;
-        // button.height = 0.15;
-        // button.cornerRadius = 9;
-        // button.background = "blue";
-        // button.topInPixels = -200;
-        // testGUI.addControl(button);
+        let button =  GUI.Button.CreateSimpleButton("mybutton", "button");
+        button.width = 0.15;
+        button.height = 0.15;
+        button.cornerRadius = 9;
+        button.background = "blue";
+        button.topInPixels = -200;
+        
+        let imageButton = new GUI.Image("test", assets.Button );
+        imageButton.sourceHeight = 100;
+        imageButton.sourceWidth = 200;
+        imageButton.autoScale = false;
+        imageButton.stretch = GUI.Image.STRETCH_NONE;
+     
+        // buttonUI.attachEvent();
+        // buttonUI.attachOnEnterBehavior();
+        // buttonUI.attachOnExitBehavior();
+        // testGUI.addControl(buttonUI.button)
+        testGUI.addControl(button);
+        testGUI.addControl(imageButton);
         let actor: IActor = new Actor({ agility: 3, defense: 3, vitiality: 3, strength: 3, dexterity: 3, charisma: 3, mana: 3, speed: 3, isAlive: true }, { x: 3, y: 1, z: 0 }, pic, this._scene, true, true);
         let actor2: IActor = new Actor({ agility: 3, defense: 3, vitiality: 3, strength: 3, dexterity: 3, charisma: 3, mana: 3, speed: 3, isAlive: true }, { x: 4, y: 1, z: 0 }, pic, this._scene, true, true);
 

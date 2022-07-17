@@ -20,6 +20,8 @@ import skybox5 from '../../assets/elyvisions/arch3_rt.png';
 import skybox6 from '../../assets/elyvisions/arch3_up.png';
 import { SlotType } from '../constants';
 import { MoveValidator } from "./MoveValidator";
+import IActor from './IActor';
+import { Vector3 } from '@babylonjs/core';
 
 
 /**
@@ -45,10 +47,16 @@ export class Enviroment implements IEnviroment {
         this._canvas = canvas;
         this._maxRadius = maxCameraRadius ?? 40;
         this._minRadius = minCameraRadius ?? 10;
-        this._enviormentGrid = new Grid(size,new MoveValidator());
+        this._enviormentGrid = new Grid(size, new MoveValidator());
 
 
     }
+    update(): void {
+        throw new Error('Method not implemented.');
+    }
+    // update(actor:IActor, postion:Vector3): void {
+    //     throw new Error('Method not implemented.');
+    // }
 
 
     //move to grid
@@ -93,7 +101,7 @@ export class Enviroment implements IEnviroment {
         skyboxmat.diffuseColor = new BABYLON.Color3(0, 0, 0);
         skyboxmat.specularColor = new BABYLON.Color3(0, 0, 0);
         skybox.material = skyboxmat;
-        
+
 
     }
 
